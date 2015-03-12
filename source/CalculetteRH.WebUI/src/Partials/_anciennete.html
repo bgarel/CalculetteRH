@@ -1,6 +1,18 @@
 ﻿<article>
-	<h1>Ancienneté</h1>
+	<h1>Calcul de l'ancienneté</h1>
 	<div>
-		Hello
-	</div>
+		<form class="form-inline" ng-submit="vm.updateAnciennete()">
+			<div class="form-group">
+				<label for="uiDateEntree">Date d'entrée</label>
+				<input type="text" class="form-control" id="uiDateEntree" placeholder="JJ/MM/AAAA" ng-model="vm.dateEntreeStr" ng-blur="vm.updateAnciennete()"/>
+			</div>
+			<div class="form-group">
+				<label for="uiDateEntree">au</label>
+				<input type="text" class="form-control" id="uiDateFin" placeholder="JJ/MM/AAAA" ng-model="vm.dateFinStr" ng-blur="vm.updateAnciennete()" />
+			</div>
+		</form>
+		<p ng-show="vm.anciennete">
+			Ce salarié a {{vm.nbreAnnees}} an(s) d'ancienneté, soit {{vm.anciennete}}.
+		</p>
+</div>
 </article>

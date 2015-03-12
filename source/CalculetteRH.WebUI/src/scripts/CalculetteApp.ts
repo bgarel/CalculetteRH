@@ -10,7 +10,8 @@
 			$routeProvider.
 				when('/anciennete', {
 				templateUrl: 'partials/_anciennete.html',
-				controller: 'AncienneteController'			
+				controller: 'AncienneteController',
+				controllerAs: 'vm'
 			}).
 				otherwise({
 				redirectTo: '/'

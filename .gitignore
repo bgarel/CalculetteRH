@@ -42,6 +42,10 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# ASP.NET
+.vs
+artifacts
+
 # Nodejs et bower
 node_modules
 bower_components
