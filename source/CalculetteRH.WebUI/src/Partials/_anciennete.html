@@ -11,8 +11,10 @@
 				<input type="text" class="form-control" id="uiDateFin" placeholder="JJ/MM/AAAA" ng-model="vm.dateFinStr" ng-blur="vm.updateAnciennete()" />
 			</div>
 		</form>
-		<p ng-show="vm.anciennete">
-			Ce salarié a {{vm.nbreAnnees}} an(s) d'ancienneté, soit {{vm.anciennete}}.
-		</p>
+		<blockquote ng-show="vm.isDateValid">
+			<p>
+				Ce salarié a <mark>{{vm.anciennete | number:2}} an(s)</mark> d'ancienneté, soit {{vm.ancienneteStr}}.
+			</p>
+		</blockquote>
 </div>
 </article>

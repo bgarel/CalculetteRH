@@ -2,6 +2,7 @@
 	"use strict";
 
 	angular.module("calculetteApp", ["ngRoute"])
+		.constant("moment", moment)
 		.controller("AncienneteController", AncienneteController)
 		.config(['$routeProvider', configRoute]);
 
