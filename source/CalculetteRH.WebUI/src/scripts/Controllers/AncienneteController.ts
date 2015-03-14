@@ -30,7 +30,9 @@
 			var dateEntree = moment(this.dateEntreeStr, 'DD/MM/YYYY');
 			var dateFin = moment(this.dateFinStr, 'DD/MM/YYYY');
 
-			if (!dateEntree.isValid() || !dateFin.isValid()) {
+			if (!dateEntree.isValid() || !dateFin.isValid()
+				|| dateFin.diff(dateEntree, 'year') > 200
+				|| dateFin.diff(dateEntree, 'year') < 0) {
 				this.isDateValid = false;
 				return;
 			}

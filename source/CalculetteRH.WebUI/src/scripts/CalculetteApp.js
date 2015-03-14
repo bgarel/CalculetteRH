@@ -7,6 +7,10 @@ var CalculetteRH;
             templateUrl: 'partials/_anciennete.html',
             controller: 'AncienneteController',
             controllerAs: 'vm'
+        }).when('/conversionMinCent', {
+            templateUrl: 'partials/_conversionMinCent.html',
+            controller: 'ConversionMinCentController',
+            controllerAs: 'vm'
         }).otherwise({
             redirectTo: '/'
         });

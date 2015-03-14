@@ -10,6 +10,9 @@
     },
     "angularjs/angular-route.d.ts": {
       "commit": "fa20411dd52348e933c2b23b24365236e92fa4ac"
+    },
+    "moment/moment.d.ts": {
+      "commit": "40eea5dc8f672e511abed203b2bb087026beec60"
     }
   }
 }
