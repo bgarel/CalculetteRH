@@ -5,6 +5,8 @@
 		.constant("moment", moment)
 		.controller("AncienneteController", AncienneteController)
 		.controller("ConversionMinCentController", ConversionMinCentController)
+		.controller("HeuresSupController", HeuresSupController)
+		.controller("HeuresComplController", HeuresComplController)
 		.config(['$routeProvider', configRoute]);
 
 	
@@ -18,6 +20,16 @@
 				when('/conversionMinCent', {
 					templateUrl: 'Partials/_conversionMinCent.html',
 					controller: 'ConversionMinCentController',
+					controllerAs: 'vm'
+				}).
+				when('/heuresSup', {
+					templateUrl: 'Partials/_heuresSup.html',
+					controller: 'HeuresSupController',
+					controllerAs: 'vm'
+				}).
+				when('/heuresCompl', {
+					templateUrl: 'Partials/_heuresCompl.html',
+					controller: 'HeuresComplController',
 					controllerAs: 'vm'
 				}).
 				otherwise({

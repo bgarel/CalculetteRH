@@ -1,0 +1,26 @@
+﻿<article>
+	<h1>Temps hebdomadaire du contrat de travail</h1>
+	<div>
+		<form class="form">
+			<div class="form-group">
+				<label for="uiTempsContrat">Temps hebdomadaire du contrat de travail</label>
+				<input type="text" class="form-control" id="uiTempsContrat" placeholder="Nombres d'heures" ng-model="vm.tempsContrat" ng-change="vm.doCalcul()"/>
+			</div>
+			<div class="form-group">
+				<label for="uiTempsTotal">Temps total de travail effectif sur la semaine concernée</label>
+				<input type="text" class="form-control" id="uiTempsTotal" placeholder="Nombre d'heures" ng-model="vm.tempsTotal" ng-change="vm.doCalcul()" />
+				<p class="help-block">Exclure les heures d'absence</p>
+			</div>
+		</form>
+		<blockquote ng-show="vm.isInputValid">
+			<p>
+				Heures supplémentares majorées à 25% : <mark>{{vm.heuresMaj25}} heure(s)</mark>.
+				<br />
+				Heures supplémentares majorées à 50% : <mark>{{vm.heuresMaj50}} heure(s)</mark>.
+			</p>
+			<p>
+				Heures de RC acquises : <mark>{{vm.heuresRC}} heure(s)</mark>.
+			</p>
+		</blockquote>
+</div>
+</article>
