@@ -49,3 +49,6 @@ artifacts
 # Nodejs et bower
 node_modules
 bower_components
+
+# dist www folder
+wwwroot

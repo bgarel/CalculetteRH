@@ -1,0 +1,18 @@
+<article>
+	<h1>Conversion Minutes / Centième</h1>
+	<div>
+		<form class="form-inline">
+			<div class="form-group">				
+				<input type="text" class="form-control form-control-small" maxlength="2" placeholder="H" id="uiHeures" ng-model="vm.heures" ng-change="vm.doConversion()"/>				
+			</div>
+			<div class="form-group">				
+				<label for="uiMinutes">:</label>
+				<input type="text" class="form-control form-control-small" maxlength="2" placeholder="M" id="uiMinutes" ng-model="vm.minutes" ng-change="vm.doConversion()" />				
+			</div>
+			<div class="form-group">
+				<label for="uiHeureMinutes">=</label>
+				<input type="text" class="form-control" id="uiHeureMinutes" placeholder="heures décimales" ng-model="vm.heureMinutes" ng-change="vm.reverseConversion()" />
+			</div>
+		</form>		
+</div>
+</article>

@@ -1,4 +1,7 @@
-﻿module CalculetteRH {
+﻿/// <reference path="../../typings/tsd.d.ts" />
+/// <reference path="_references.ts" />
+
+module CalculetteRH {
 	"use strict";
 
 	angular.module("calculetteApp", ["ngRoute"])
@@ -11,24 +14,27 @@
 
 	
 	function configRoute($routeProvider: ng.route.IRouteProvider) {
-			$routeProvider.
+			 $routeProvider
+			 	.when('/', {
+            		templateUrl: 'app/accueil.html'
+			 	}).
 				when('/anciennete', {
-					templateUrl: 'Partials/_anciennete.html',
+					templateUrl: 'app/GestionPersonnel/Anciennete/anciennete.html',
 					controller: 'AncienneteController',
 					controllerAs: 'vm'
 				}).
 				when('/conversionMinCent', {
-					templateUrl: 'Partials/_conversionMinCent.html',
+					templateUrl: 'app/GestionPersonnel/ConversionMinCent/conversionMinCent.html',
 					controller: 'ConversionMinCentController',
 					controllerAs: 'vm'
 				}).
 				when('/heuresSup', {
-					templateUrl: 'Partials/_heuresSup.html',
+					templateUrl: 'app/GestionPersonnel/HeuresSup/heuresSup.html',
 					controller: 'HeuresSupController',
 					controllerAs: 'vm'
 				}).
 				when('/heuresCompl', {
-					templateUrl: 'Partials/_heuresCompl.html',
+					templateUrl: 'app/GestionPersonnel/HeuresCompl/heuresCompl.html',
 					controller: 'HeuresComplController',
 					controllerAs: 'vm'
 				}).
