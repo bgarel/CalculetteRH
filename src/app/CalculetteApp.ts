@@ -10,6 +10,7 @@ module CalculetteRH {
 		.controller("ConversionMinCentController", ConversionMinCentController)
 		.controller("HeuresSupController", HeuresSupController)
 		.controller("HeuresComplController", HeuresComplController)
+		.controller("IjssSalaireMenController", IjssSalaireMenController)
 		.config(['$routeProvider', configRoute]);
 
 	
@@ -36,6 +37,11 @@ module CalculetteRH {
 				when('/heuresCompl', {
 					templateUrl: 'app/GestionPersonnel/HeuresCompl/heuresCompl.html',
 					controller: 'HeuresComplController',
+					controllerAs: 'vm'
+				}).
+				when('/IjssSalaireMensualise', {
+					templateUrl: 'app/Paie/IjssSalaireMensualise/ijssSalaireMen.html',
+					controller: 'IjssSalaireMenController',
 					controllerAs: 'vm'
 				}).
 				otherwise({

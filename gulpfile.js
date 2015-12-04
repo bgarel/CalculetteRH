@@ -96,4 +96,4 @@ gulp.task('serve', ['compile-ts','html'], function() {
   });
 });
 
-gulp.task('default', ['compile-ts']);
+gulp.task('default', ['html', 'compile-ts']);

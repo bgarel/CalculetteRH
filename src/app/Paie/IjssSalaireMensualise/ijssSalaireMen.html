@@ -1,0 +1,56 @@
+<article>
+	<h1>Indemnités Journalières Maladie<br/>Salariés mensualisés 2015</h1>
+	<div class="container-fluid">
+		<form class="form">
+			<div class="form-group">
+				<label for="uiPlafondSalaire">Plafond des salaires (1.8 x SMIC)</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="uiPlafondSalaire" ng-model="vm.plafondSalaire" ng-change="vm.updateIjss()"/>
+					<span class="input-group-addon">€</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="uiPlafondIjss">Plafond IJSS</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="uiPlafondIjss" ng-model="vm.plafondIjss" ng-change="vm.updateIjss()"/>
+					<span class="input-group-addon">€</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="uiPlafondIjssMaj">Plafond IJSS majoré</label>
+				<div class="input-group">
+					<input type="text" class="form-control" id="uiPlafondIjssMaj" ng-model="vm.plafondIjss" ng-change="vm.updateIjss()"/>
+					<span class="input-group-addon">€</span>
+				</div>
+			</div>
+		</form>		
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="uiDateDebut">Date de début de l'arrêt de travail</label>
+				<input type="text" class="form-control" id="uiDateDebut" placeholder="JJ/MM/AAAA" ng-model="vm.dateDebutStr" ng-change="vm.updateIjss()"/>
+			</div>
+			<div class="form-group">
+				<label for="uiDateDernierJour">Dernier jour travaillé</label>
+				<input type="text" class="form-control" id="uiDateDernierJour" placeholder="JJ/MM/AAAA" ng-model="vm.dateDernierJourStr" ng-change="vm.updateIjss()" />
+			</div>
+			<div class="form-group">
+				<label for="uiDateFin">Date de fin de l'arrêt de travail</label>
+				<input type="text" class="form-control" id="uiDateFin" placeholder="JJ/MM/AAAA" ng-model="vm.dateFinStr" ng-change="vm.updateIjss()" />
+			</div>
+			<div class="form-group">
+				<label for="uiNbEnfants">Nombre d'enfants à charge</label>
+				<input type="text" class="form-control" id="uiNbEnfants" ng-model="vm.nbEnfantsStr" ng-change="vm.updateIjss()" />
+			</div>
+		</form>
+		<blockquote ng-show="vm.isIjssValid">
+			<p>
+				Carence du <mark>{{vm.dateCarenceDebut}}</mark> au <mark>{{vm.dateCarenceFin}}</mark>.<br/>
+				IJSS du <mark>{{vm.dateIjssDebut}}</mark> au <mark>{{vm.dateIjssFin}}</mark> : {{vm.ijssBrut}} brut | {{vm.ijssNet}} net.<br/>
+				IJSS maj à partir du <mark>{{vm.dateIjssMajDebut}}</mark> au <mark>{{vm.dateIjssMajFin}}</mark> : {{vm.ijssMajBrut}} brut | {{vm.ijssMajNet}} net.<br/>				
+			</p>
+			<p>
+				Versement pour l'arrêt : {{vm.nbJoursArret}} jour(s), soit <mark>{{vm.ijssTotalBrut}}</mark> brut | <mark>{{vm.ijssTotalNet}}</mark>
+			</p>
+		</blockquote>
+</div>
+</article>
