@@ -74,10 +74,10 @@ gulp.task('clean-ts', function (cb) {
 });
 
 gulp.task('watch', function() {
-    gulp.watch([config.allTypeScript, config.AllHtml], ['compile-ts', 'html']);
+    gulp.watch([config.allTypeScript, config.AllHtml], ['compile-ts']);
 });
 
-gulp.task('serve', ['compile-ts','html'], function() {
+gulp.task('serve', ['compile-ts'], function() {
   process.stdout.write('Starting browserSync and superstatic...\n');
   var bs = browserSync.create();
   bs.init({
@@ -86,14 +86,14 @@ gulp.task('serve', ['compile-ts','html'], function() {
     injectChanges: true,
     logFileChanges: false,
     logLevel: 'silent',
-    logPrefix: 'angularin20typescript',
+    logPrefix: 'Calculette-RH',
     notify: true,
     reloadDelay: 0,
     server: {
-      baseDir: './wwwroot',
+      baseDir: config.output
       //middleware: superstatic({ debug: false})
     }
   });
 });
 
-gulp.task('default', ['html', 'compile-ts']);
+gulp.task('default', ['compile-ts']);
