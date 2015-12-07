@@ -28,31 +28,37 @@
 					</div>
 				</div>
 			</div>
-		</form>			
-		<form class="form">
 			<div class="form-group">
-				<label for="uiDateDebut">Date de début de l'arrêt de travail</label>
-				<input type="text" class="form-control" id="uiDateDebut" placeholder="JJ/MM/AAAA" ng-model="vm.dateDebutStr" ng-change="vm.updateIjss()"/>
+				<label class="control-label col-sm-5 col-md-4" for="uiDateDernierJour">Dernier jour travaillé</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="uiDateDernierJour" placeholder="JJ/MM/AAAA" ng-model="vm.dateDernierJourStr" ng-change="vm.updateIjss()" />
+				</div>
+			</div>		
+			<div class="form-group">
+				<label class="control-label col-sm-5 col-md-4" for="uiDateDebut">Date de début de l'arrêt de travail</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="uiDateDebut" placeholder="JJ/MM/AAAA" ng-model="vm.dateDebutStr" ng-change="vm.updateIjss()"/>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="control-label col-sm-5 col-md-4" for="uiDateFin">Date de fin de l'arrêt de travail</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control" id="uiDateFin" placeholder="JJ/MM/AAAA" ng-model="vm.dateFinStr" ng-change="vm.updateIjss()" />
+				</div>
 			</div>
 			<div class="form-group">
-				<label for="uiDateDernierJour">Dernier jour travaillé</label>
-				<input type="text" class="form-control" id="uiDateDernierJour" placeholder="JJ/MM/AAAA" ng-model="vm.dateDernierJourStr" ng-change="vm.updateIjss()" />
-			</div>
-			<div class="form-group">
-				<label for="uiDateFin">Date de fin de l'arrêt de travail</label>
-				<input type="text" class="form-control" id="uiDateFin" placeholder="JJ/MM/AAAA" ng-model="vm.dateFinStr" ng-change="vm.updateIjss()" />
-			</div>
-			<div class="form-group">
-				<label for="uiNbEnfants">Nombre d'enfants à charge</label>
-				<input type="text" class="form-control" id="uiNbEnfants" ng-model="vm.nbEnfantsStr" ng-change="vm.updateIjss()" />
+				<label class="control-label col-sm-5 col-md-4" for="uiNbEnfants">Nombre d'enfants à charge</label>
+				<div class="col-sm-3">
+					<input type="text" class="form-control text-right" id="uiNbEnfants" ng-model="vm.nbEnfantsStr" ng-change="vm.updateIjss()" />
+				</div>
 			</div>
 		</form>
-		<p ng-show="vm.dateDebutStr">
-		Salaires des 3 derniers mois (en cas d'absence indiquer le salaire qui aurait été perçu si le salarié avait travaillé, sauf en cas d'absence non autorisée)	
+		<p ng-show="vm.isDateDebutValid">
+		Salaires bruts des 3 derniers mois (en cas d'absence indiquer le salaire qui aurait été perçu si le salarié avait travaillé, sauf en cas d'absence non autorisée)	
 		</p>
-		<form class="form-horizontal" ng-show="vm.dateDebutStr">
+		<form class="form-horizontal" ng-show="vm.isDateDebutValid">
 			<div class="form-group">				
-				<label class="control-label col-sm-5 col-md-4" for="uiSalaireNmoins3">{{vm.moisNmoins3}}</label>
+				<label class="control-label col-sm-5 col-md-4" for="uiSalaireNmoins3">Salaire brut {{vm.moisNmoins3}}</label>
 				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" class="form-control text-right" id="uiSalaireNmoins3" ng-model="vm.salaireNMoins3" ng-change="vm.updateIjss()"/>
@@ -61,7 +67,7 @@
 				</div>
 			</div>
 			<div class="form-group">				
-				<label class="control-label col-sm-5 col-md-4" for="uiSalaireNmoins2">{{vm.moisNmoins2}}</label>
+				<label class="control-label col-sm-5 col-md-4" for="uiSalaireNmoins2">Salaire brut {{vm.moisNmoins2}}</label>
 				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" class="form-control text-right" id="uiSalaireNmoins2" ng-model="vm.salaireNMoins2" ng-change="vm.updateIjss()"/>
@@ -70,7 +76,7 @@
 				</div>
 			</div>
 			<div class="form-group">				
-				<label class="control-label col-sm-5 col-md-4" for="uiSalaireNmoins1">{{vm.moisNmoins1}}</label>
+				<label class="control-label col-sm-5 col-md-4" for="uiSalaireNmoins1">Salaire brut {{vm.moisNmoins1}}</label>
 				<div class="col-sm-3">
 					<div class="input-group">
 						<input type="text" class="form-control text-right" id="uiSalaireNmoins1" ng-model="vm.salaireNMoins1" ng-change="vm.updateIjss()"/>
@@ -81,14 +87,14 @@
 		</form>			
 		<blockquote ng-show="vm.isIjssValid">
 			<p>
-				Carence du <mark>{{vm.dateCarenceDebut}}</mark> au <mark>{{vm.dateCarenceFin}}</mark>.<br/>
-				IJSS du <mark>{{vm.dateIjssDebut}}</mark> au <mark>{{vm.dateIjssFin}}</mark> : {{vm.ijssBrut}} brut | {{vm.ijssNet}} net.<br/>
+				Carence du <mark>{{vm.dateCarenceDebut.format('DD/MM/YYYY')}}</mark> au <mark>{{vm.dateCarenceFin.format('DD/MM/YYYY')}}</mark>.<br/>
+				IJSS du <mark>{{vm.dateIjssDebut.format('DD/MM/YYYY')}}</mark> au <mark>{{vm.dateIjssFin.format('DD/MM/YYYY')}}</mark> : {{vm.ijssBrut | number:2}}€ brut | {{vm.ijssNet | number:2}}€ net.<br/>
 				<span ng-show="vm.nbEnfants >= 3">
-					IJSS maj à partir du <mark>{{vm.dateIjssMajDebut}}</mark> au <mark>{{vm.dateIjssMajFin}}</mark> : {{vm.ijssMajBrut}} brut | {{vm.ijssMajNet}} net.<br/>
+					IJSS maj à partir du <mark>{{vm.dateIjssMajDebut.format('DD/MM/YYYY')}}</mark> au <mark>{{vm.dateIjssMajFin}}</mark> : {{vm.ijssMajBrut | number:2}}€ brut | {{vm.ijssMajNet | number:2}}€ net.<br/>
 				</span>				
 			</p>
 			<p>
-				Versement pour l'arrêt : {{vm.nbJoursArret}} jour(s), soit <mark>{{vm.ijssTotalBrut}}</mark> brut | <mark>{{vm.ijssTotalNet}}</mark>
+				Versement pour l'arrêt : {{vm.nbJoursArret}} jour(s), soit <mark>{{vm.ijssTotalBrut| number:2}}€</mark> brut | <mark>{{vm.ijssTotalNet| number:2}}€</mark>
 			</p>
 		</blockquote>
 </article>
