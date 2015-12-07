@@ -161,6 +161,7 @@ var CalculetteRH;
             //this.dateFinStr = dateFin.format('DD/MM/YYYY');
             this.isIjssValid = false;
             this.isDateDebutValid = false;
+            this.showIjssMaj = false;
         }
         IjssSalaireMenController.prototype.updateIjss = function () {
             var dateDernierJour = moment(this.dateDernierJourStr, 'DD/MM/YYYY');
@@ -173,30 +174,50 @@ var CalculetteRH;
             }
             this.isDateDebutValid = true;
             var dateTemp = dateDernierJour.clone();
-            this.moisNmoins1 = dateTemp.add('month', -1).locale('fr').format('MMMM YYYY');
-            this.moisNmoins2 = dateTemp.add('month', -1).locale('fr').format('MMMM YYYY');
-            this.moisNmoins3 = dateTemp.add('month', -1).locale('fr').format('MMMM YYYY');
+            this.moisNmoins1 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisNmoins2 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisNmoins3 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
             if (!dateDebut.isValid() || !dateFin.isValid()
-                || dateDebut > dateFin) {
+                || dateFin.diff(dateDebut, 'day') < 3) {
                 this.isIjssValid = false;
                 return;
             }
             this.isIjssValid = true;
-            dateTemp = dateDernierJour.clone().add('day', 1);
+            dateTemp = dateDernierJour.clone().add(1, 'day');
             this.dateCarenceDebut = moment.max([dateTemp, dateDebut]);
-            this.dateCarenceFin = this.dateCarenceDebut.clone().add('day', 2);
-            this.dateIjssDebut = this.dateCarenceFin.clone().add('day', 1);
-            this.dateIjssFin = dateFin;
-            // MIN(((MIN(E16;E3)+MIN(E17;E3)+MIN(E18;E3))/3/30,42*50%);E4)
+            this.dateCarenceFin = this.dateCarenceDebut.clone().add(2, 'day');
+            this.dateIjssDebut = this.dateCarenceFin.clone().add(1, 'day');
             var minN3 = Math.min(this.salaireNMoins3, this.plafondSalaire);
             var minN2 = Math.min(this.salaireNMoins2, this.plafondSalaire);
             var minN1 = Math.min(this.salaireNMoins1, this.plafondSalaire);
             var moyenneBrut = (minN1 + minN2 + minN3) / 3 / (365 / 12) * 0.5;
             this.ijssBrut = Math.min(moyenneBrut, this.plafondIjss);
             this.ijssNet = 0.933 * this.ijssBrut;
-            this.nbJoursArret = this.dateIjssFin.diff(this.dateIjssDebut, 'day') + 1;
-            this.ijssTotalBrut = this.nbJoursArret * this.ijssBrut;
-            this.ijssTotalNet = this.nbJoursArret * this.ijssNet;
+            var nbJoursIjss = 0;
+            var nbJoursIjssMaj = 0;
+            if (this.nbEnfants) {
+                if (this.nbEnfants < 3 || dateFin.diff(this.dateCarenceDebut, 'day') <= 29) {
+                    console.log('dateDiff:' + dateFin.diff(this.dateCarenceDebut, 'day'));
+                    this.showIjssMaj = false;
+                    this.dateIjssFin = dateFin;
+                    this.ijssMajBrut = 0;
+                    this.ijssMajNet = 0;
+                }
+                else if (this.nbEnfants >= 3) {
+                    this.showIjssMaj = true;
+                    var moyenneBrutMaj = (minN1 + minN2 + minN3) / 3 / (365 / 12) * 0.666;
+                    this.ijssMajBrut = Math.min(moyenneBrutMaj, this.plafondIjssMaj);
+                    this.ijssMajNet = 0.933 * this.ijssMajBrut;
+                    this.dateIjssFin = this.dateCarenceDebut.clone().add(29, 'day');
+                    this.dateIjssMajDebut = this.dateIjssFin.clone().add(1, 'day');
+                    this.dateIjssMajFin = dateFin;
+                    nbJoursIjssMaj = this.dateIjssMajFin.diff(this.dateIjssMajDebut, 'day') + 1;
+                }
+                nbJoursIjss = this.dateIjssFin.diff(this.dateIjssDebut, 'day') + 1;
+                this.nbJoursArret = nbJoursIjss + nbJoursIjssMaj;
+                this.ijssTotalBrut = nbJoursIjss * this.ijssBrut + nbJoursIjssMaj * this.ijssMajBrut;
+                this.ijssTotalNet = nbJoursIjss * this.ijssNet + nbJoursIjssMaj * this.ijssMajNet;
+            }
         };
         IjssSalaireMenController.$inject = [
             'moment'

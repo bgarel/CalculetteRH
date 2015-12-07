@@ -85,12 +85,12 @@
 				</div>
 			</div>
 		</form>			
-		<blockquote ng-show="vm.isIjssValid">
+		<blockquote ng-show="vm.isIjssValid && vm.nbEnfants">
 			<p>
 				Carence du {{vm.dateCarenceDebut.format('DD/MM/YYYY')}} au {{vm.dateCarenceFin.format('DD/MM/YYYY')}}.<br/>
 				IJSS du {{vm.dateIjssDebut.format('DD/MM/YYYY')}} au {{vm.dateIjssFin.format('DD/MM/YYYY')}} : <mark>{{vm.ijssBrut | number:2}}€</mark> brut | <mark>{{vm.ijssNet | number:2}}€</mark> net.<br/>
-				<span ng-show="vm.nbEnfants >= 3">
-					IJSS maj à partir du {{vm.dateIjssMajDebut.format('DD/MM/YYYY')}} au {{vm.dateIjssMajFin}} : <mark>{{vm.ijssMajBrut | number:2}}€</mark> brut | <mark>{{vm.ijssMajNet | number:2}}€</mark> net.<br/>
+				<span ng-show="vm.showIjssMaj">
+					IJSS maj à partir du {{vm.dateIjssMajDebut.format('DD/MM/YYYY')}} au {{vm.dateIjssMajFin.format('DD/MM/YYYY')}} : <mark>{{vm.ijssMajBrut | number:2}}€</mark> brut | <mark>{{vm.ijssMajNet | number:2}}€</mark> net.<br/>
 				</span>				
 			</p>
 			<p>
