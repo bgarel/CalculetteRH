@@ -84,8 +84,12 @@ module CalculetteRH {
 			let moyenneBrut = (minN1 + minN2 + minN3) / 3 / (365/12) * 0.5;
 			this.ijssBrut = Math.min(moyenneBrut, this.plafondIjss);
 			this.ijssNet = 0.933 * this.ijssBrut;
-						
-			
+			this.nbJoursArret = this.dateIjssFin.diff(this.dateIjssDebut, 'day') + 1;
+			this.ijssTotalBrut = this.nbJoursArret * this.ijssBrut;
+			this.ijssTotalNet = this.nbJoursArret * this.ijssNet;
+			let moyenneBrutMaj = (minN1 + minN2 + minN3) / 3 / (365/12) * 0.666;
+			this.ijssMajBrut = 	Math.min(moyenneBrut, this.plafondIjss);
+			this.ijssMajNet = 0.933 * this.ijssMajBrut;
 		}
 
 			
