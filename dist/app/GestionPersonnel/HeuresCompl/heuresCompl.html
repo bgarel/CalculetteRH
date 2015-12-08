@@ -1,0 +1,28 @@
+<article>
+	<h1>Heures complémentaires</h1>
+	<div>
+		<form class="form">
+			<div class="form-group">
+				<label for="uiTempsContrat">Temps hebdomadaire du contrat de travail</label>
+				<input type="text" class="form-control" id="uiTempsContrat" placeholder="Nombres d'heures" ng-model="vm.tempsContrat" ng-change="vm.doCalcul()"/>
+			</div>
+			<div class="form-group">
+				<label for="uiTempsTotal">Temps total de travail effectif sur la semaine concernée</label>
+				<input type="text" class="form-control" id="uiTempsTotal" placeholder="Nombre d'heures" ng-model="vm.tempsTotal" ng-change="vm.doCalcul()" />
+				<p class="help-block">Exclure les heures d'absence</p>
+			</div>
+		</form>		
+		<div class="alert alert-danger" ng-show="vm.is35hDepasse">
+			Attention, dépassement 35 heures non autorisé pour un temps partiel.
+		</div>
+		<blockquote ng-show="vm.isInputValid">
+			<p>
+				Heures complémentaires majorées à 10% : <mark>{{vm.heuresMaj10 | number:2}} heure(s)</mark>.
+				<br />
+				Heures complémentaires majorées à 25%* : <mark>{{vm.heuresMaj25 | number:2}} heure(s)</mark>.
+				<span class="help-block">* Accord du salarié nécessaire</span>
+			</p>			
+		</blockquote>
+		
+</div>
+</article>

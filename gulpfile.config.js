@@ -1,14 +1,13 @@
 'use strict';
 var GulpConfig = (function () {
     function gulpConfig() {
-        //Got tired of scrolling through all the comments so removed them
-        //Don't hurt me AC :-)
+        this.app = 'app/';
         this.source = './src/';
-        this.sourceApp = this.source + 'app/';
-		// Pour le dev : on met la sortie vers src
-        //this.output = './wwwroot/';        
+        this.sourceApp = this.source + this.app;		      
         this.output = './src/';
-        this.tsOutputPath = this.output + '/app/';
+        this.dist = './dist/';
+        this.tsOutputFile = 'app.js';
+        this.tsOutputPath = this.output + this.app;
         this.allJavaScript = [this.sourceApp + '/**/*.js'];
         this.allTypeScript = this.sourceApp + '/**/*.ts';
         this.allHtml = [this.source + '/**/*.html', this.source + '/**/*.css', this.source + '/**/*.ico'];

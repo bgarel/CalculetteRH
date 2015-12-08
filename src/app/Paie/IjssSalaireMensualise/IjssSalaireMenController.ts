@@ -9,8 +9,7 @@ module CalculetteRH {
 		plafondIjssMaj: number = 57.50;
 		
 		dateDebutStr: string;
-		dateFinStr: string;
-		dateDernierJourStr: string;
+		dateFinStr: string;		
 		nbEnfants: number;
 		isIjssValid: boolean;
 		isDateDebutValid: boolean;
@@ -50,18 +49,18 @@ module CalculetteRH {
 		}
 
 		updateIjss() {			
-			let dateDernierJour = moment(this.dateDernierJourStr, 'DD/MM/YYYY');
+			
 			let dateDebut = moment(this.dateDebutStr, 'DD/MM/YYYY');
 			let dateFin = moment(this.dateFinStr, 'DD/MM/YYYY');
 			
-			if (!dateDernierJour.isValid() || dateDernierJour.year() < 1000)	{
+			if (!dateDebut.isValid() || dateDebut.year() < 1000)	{
 				this.isDateDebutValid = false;
 				this.isIjssValid = false;
 				return;
 			}						
 			this.isDateDebutValid = true;
 			
-			let dateTemp = dateDernierJour.clone();
+			let dateTemp = dateDebut.clone();
 			this.moisNmoins1 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
 			this.moisNmoins2 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
 			this.moisNmoins3 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');	
@@ -73,7 +72,7 @@ module CalculetteRH {
 			}
 			this.isIjssValid = true;
 			
-			dateTemp = dateDernierJour.clone().add(1, 'day');			
+			dateTemp = dateDebut.clone().add(1, 'day');			
 			this.dateCarenceDebut = moment.max([dateTemp, dateDebut]);
 			this.dateCarenceFin = this.dateCarenceDebut.clone().add(2, 'day');
 			this.dateIjssDebut = this.dateCarenceFin.clone().add(1, 'day');
@@ -89,8 +88,7 @@ module CalculetteRH {
 			let nbJoursIjssMaj = 0;
 			
 			if (this.nbEnfants) {
-				if (this.nbEnfants < 3 || dateFin.diff(this.dateCarenceDebut, 'day') <= 29) {
-					console.log('dateDiff:' + dateFin.diff(this.dateCarenceDebut, 'day'));
+				if (this.nbEnfants < 3 || dateFin.diff(this.dateCarenceDebut, 'day') <= 29) {					
 					this.showIjssMaj = false;
 					this.dateIjssFin = dateFin;
 					this.ijssMajBrut = 	0;

@@ -164,16 +164,15 @@ var CalculetteRH;
             this.showIjssMaj = false;
         }
         IjssSalaireMenController.prototype.updateIjss = function () {
-            var dateDernierJour = moment(this.dateDernierJourStr, 'DD/MM/YYYY');
             var dateDebut = moment(this.dateDebutStr, 'DD/MM/YYYY');
             var dateFin = moment(this.dateFinStr, 'DD/MM/YYYY');
-            if (!dateDernierJour.isValid() || dateDernierJour.year() < 1000) {
+            if (!dateDebut.isValid() || dateDebut.year() < 1000) {
                 this.isDateDebutValid = false;
                 this.isIjssValid = false;
                 return;
             }
             this.isDateDebutValid = true;
-            var dateTemp = dateDernierJour.clone();
+            var dateTemp = dateDebut.clone();
             this.moisNmoins1 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
             this.moisNmoins2 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
             this.moisNmoins3 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
@@ -183,7 +182,7 @@ var CalculetteRH;
                 return;
             }
             this.isIjssValid = true;
-            dateTemp = dateDernierJour.clone().add(1, 'day');
+            dateTemp = dateDebut.clone().add(1, 'day');
             this.dateCarenceDebut = moment.max([dateTemp, dateDebut]);
             this.dateCarenceFin = this.dateCarenceDebut.clone().add(2, 'day');
             this.dateIjssDebut = this.dateCarenceFin.clone().add(1, 'day');
@@ -197,7 +196,6 @@ var CalculetteRH;
             var nbJoursIjssMaj = 0;
             if (this.nbEnfants) {
                 if (this.nbEnfants < 3 || dateFin.diff(this.dateCarenceDebut, 'day') <= 29) {
-                    console.log('dateDiff:' + dateFin.diff(this.dateCarenceDebut, 'day'));
                     this.showIjssMaj = false;
                     this.dateIjssFin = dateFin;
                     this.ijssMajBrut = 0;

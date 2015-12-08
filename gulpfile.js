@@ -9,8 +9,9 @@ var gulp = require('gulp'),
     del = require('del'),
     Config = require('./gulpfile.config'),
     tsProject = tsc.createProject('tsconfig.json'),
-    browserSync = require('browser-sync'),
-    superstatic = require('superstatic');
+    browserSync = require('browser-sync'), 
+    uglify = require('gulp-uglify');
+ 
 
 var config = new Config();
 
@@ -74,11 +75,12 @@ gulp.task('clean-ts', function (cb) {
 });
 
 gulp.task('watch', function() {
-    gulp.watch([config.allTypeScript, config.AllHtml], ['compile-ts']);
+   // gulp.watch([config.allTypeScript, config.AllHtml], ['compile-ts']);
+   gulp.watch(config.allTypeScript, ['compile-ts']);
 });
 
-gulp.task('serve', ['compile-ts'], function() {
-  process.stdout.write('Starting browserSync and superstatic...\n');
+gulp.task('serve', ['compile-ts', 'watch'], function() {
+  process.stdout.write('Starting browserSync...\n');
   var bs = browserSync.create();
   bs.init({
     port: 3000,
@@ -90,10 +92,21 @@ gulp.task('serve', ['compile-ts'], function() {
     notify: true,
     reloadDelay: 0,
     server: {
-      baseDir: config.output
+      baseDir: config.dist
       //middleware: superstatic({ debug: false})
     }
   });
 });
+
+
+gulp.task('dist', ['compile-ts'], function() {
+  // Html/css
+  gulp.src(config.allHtml).pipe(gulp.dest(config.dist));
+  // js
+  gulp.src(config.tsOutputPath + config.tsOutputFile)
+    .pipe(uglify())
+    .pipe(gulp.dest(config.dist + config.app));
+});
+
 
 gulp.task('default', ['compile-ts']);
