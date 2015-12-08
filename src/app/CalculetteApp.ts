@@ -11,6 +11,7 @@ module CalculetteRH {
 		.controller("HeuresSupController", HeuresSupController)
 		.controller("HeuresComplController", HeuresComplController)
 		.controller("IjssSalaireMenController", IjssSalaireMenController)
+		.controller("IndemLicController", IndemLicController)
 		.config(['$routeProvider', configRoute]);
 
 	
@@ -18,30 +19,35 @@ module CalculetteRH {
 			 $routeProvider
 			 	.when('/', {
             		templateUrl: 'app/accueil.html'
-			 	}).
-				when('/anciennete', {
+			 	})
+				.when('/anciennete', {
 					templateUrl: 'app/GestionPersonnel/Anciennete/anciennete.html',
 					controller: 'AncienneteController',
 					controllerAs: 'vm'
-				}).
-				when('/conversionMinCent', {
+				})
+				.when('/conversionMinCent', {
 					templateUrl: 'app/GestionPersonnel/ConversionMinCent/conversionMinCent.html',
 					controller: 'ConversionMinCentController',
 					controllerAs: 'vm'
-				}).
-				when('/heuresSup', {
+				})
+				.when('/heuresSup', {
 					templateUrl: 'app/GestionPersonnel/HeuresSup/heuresSup.html',
 					controller: 'HeuresSupController',
 					controllerAs: 'vm'
-				}).
-				when('/heuresCompl', {
+				})
+				.when('/heuresCompl', {
 					templateUrl: 'app/GestionPersonnel/HeuresCompl/heuresCompl.html',
 					controller: 'HeuresComplController',
 					controllerAs: 'vm'
-				}).
-				when('/IjssSalaireMensualise', {
+				})
+				.when('/IjssSalaireMensualise', {
 					templateUrl: 'app/Paie/IjssSalaireMensualise/ijssSalaireMen.html',
 					controller: 'IjssSalaireMenController',
+					controllerAs: 'vm'
+				})
+				.when('/IndemLic', {
+					templateUrl: 'app/Paie/IndemLic/indemLic.html',
+					controller: 'IndemLicController',
 					controllerAs: 'vm'
 				}).
 				otherwise({

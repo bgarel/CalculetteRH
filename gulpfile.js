@@ -92,7 +92,7 @@ gulp.task('serve', ['compile-ts', 'watch'], function() {
     notify: true,
     reloadDelay: 0,
     server: {
-      baseDir: config.dist
+      baseDir: config.output
       //middleware: superstatic({ debug: false})
     }
   });
