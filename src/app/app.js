@@ -13,7 +13,7 @@ var CalculetteRH;
             var nbreAnnees = 0;
             var nbreMois = 0;
             var dateEntree = moment(this.dateEntreeStr, 'DD/MM/YYYY');
-            var dateFin = moment(this.dateFinStr, 'DD/MM/YYYY');
+            var dateFin = moment(this.dateFinStr, 'DD/MM/YYYY').add(1, 'day');
             if (!dateEntree.isValid() || !dateFin.isValid()
                 || dateFin.diff(dateEntree, 'year') > 200
                 || dateFin.diff(dateEntree, 'year') < 0) {
@@ -182,8 +182,8 @@ var CalculetteRH;
                 return;
             }
             this.isIjssValid = true;
-            dateTemp = dateDebut.clone().add(1, 'day');
-            this.dateCarenceDebut = moment.max([dateTemp, dateDebut]);
+            //dateTemp = dateDebut.clone().add(1, 'day');			
+            this.dateCarenceDebut = dateDebut; //moment.max([dateTemp, dateDebut]);
             this.dateCarenceFin = this.dateCarenceDebut.clone().add(2, 'day');
             this.dateIjssDebut = this.dateCarenceFin.clone().add(1, 'day');
             var minN3 = Math.min(this.salaireNMoins3, this.plafondSalaire);
@@ -255,7 +255,7 @@ var CalculetteRH;
             this.moisN10 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
             this.moisN11 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
             this.moisN12 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
-            var anciennete = dateFin.diff(dateEntree, 'year', true);
+            var anciennete = dateFin.add(1, 'day').diff(dateEntree, 'year', true);
             console.log('anciennete:' + anciennete);
             var salaireMoy3Mois = (+this.salaireN1 + (+this.salaireN2) + (+this.salaireN3)) / 3;
             var salaireMoy12Mois = (+this.salaireN1 + (+this.salaireN2) + (+this.salaireN3) + (+this.salaireN4) + (+this.salaireN5) + (+this.salaireN6)
@@ -297,6 +297,9 @@ var CalculetteRH;
             .when('/', {
             templateUrl: 'app/accueil.html'
         })
+            .when('/accueil', {
+            templateUrl: 'app/accueil.html'
+        })
             .when('/anciennete', {
             templateUrl: 'app/GestionPersonnel/Anciennete/anciennete.html',
             controller: 'AncienneteController',
@@ -326,8 +329,8 @@ var CalculetteRH;
             templateUrl: 'app/Paie/IndemLic/indemLic.html',
             controller: 'IndemLicController',
             controllerAs: 'vm'
-        }).
-            otherwise({
+        })
+            .otherwise({
             redirectTo: '/'
         });
     }

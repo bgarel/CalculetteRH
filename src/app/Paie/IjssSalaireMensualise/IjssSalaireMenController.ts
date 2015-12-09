@@ -72,8 +72,8 @@ module CalculetteRH {
 			}
 			this.isIjssValid = true;
 			
-			dateTemp = dateDebut.clone().add(1, 'day');			
-			this.dateCarenceDebut = moment.max([dateTemp, dateDebut]);
+			//dateTemp = dateDebut.clone().add(1, 'day');			
+			this.dateCarenceDebut = dateDebut;//moment.max([dateTemp, dateDebut]);
 			this.dateCarenceFin = this.dateCarenceDebut.clone().add(2, 'day');
 			this.dateIjssDebut = this.dateCarenceFin.clone().add(1, 'day');
 						

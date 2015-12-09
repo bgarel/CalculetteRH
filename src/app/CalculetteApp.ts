@@ -20,6 +20,9 @@ module CalculetteRH {
 			 	.when('/', {
             		templateUrl: 'app/accueil.html'
 			 	})
+				.when('/accueil', {
+            		templateUrl: 'app/accueil.html'
+			 	})
 				.when('/anciennete', {
 					templateUrl: 'app/GestionPersonnel/Anciennete/anciennete.html',
 					controller: 'AncienneteController',
@@ -49,9 +52,9 @@ module CalculetteRH {
 					templateUrl: 'app/Paie/IndemLic/indemLic.html',
 					controller: 'IndemLicController',
 					controllerAs: 'vm'
-				}).
-				otherwise({
-				redirectTo: '/'
+				})
+				.otherwise({
+					redirectTo: '/'
 			});
 	}
 

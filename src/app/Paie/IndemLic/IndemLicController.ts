@@ -74,7 +74,7 @@ module CalculetteRH {
 			this.moisN11 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
 			this.moisN12 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');			
 						
-			let anciennete = dateFin.diff(dateEntree, 'year', true);
+			let anciennete = dateFin.add(1, 'day').diff(dateEntree, 'year', true);
 			console.log('anciennete:' + anciennete);
 			let salaireMoy3Mois = (+this.salaireN1 + (+this.salaireN2) + (+this.salaireN3)) / 3;
 			let salaireMoy12Mois = (+this.salaireN1 + (+this.salaireN2) + (+this.salaireN3) + (+this.salaireN4) + (+this.salaireN5) + (+this.salaireN6)

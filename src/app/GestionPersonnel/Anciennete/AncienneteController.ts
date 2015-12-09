@@ -28,7 +28,7 @@
 			var nbreMois = 0;
 
 			var dateEntree = moment(this.dateEntreeStr, 'DD/MM/YYYY');
-			var dateFin = moment(this.dateFinStr, 'DD/MM/YYYY');
+			var dateFin = moment(this.dateFinStr, 'DD/MM/YYYY').add(1, 'day');
 
 			if (!dateEntree.isValid() || !dateFin.isValid()
 				|| dateFin.diff(dateEntree, 'year') > 200
