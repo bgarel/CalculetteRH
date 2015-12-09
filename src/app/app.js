@@ -230,7 +230,44 @@ var CalculetteRH;
     var IndemLicController = (function () {
         function IndemLicController(moment) {
             this.moment = moment;
+            this.isIndemniteValid = false;
         }
+        IndemLicController.prototype.updateIndemnite = function () {
+            var dateEntree = moment(this.dateEntreeStr, 'DD/MM/YYYY');
+            var dateFin = moment(this.dateSortieStr, 'DD/MM/YYYY');
+            if (!dateEntree.isValid() || !dateFin.isValid()
+                || dateFin.diff(dateEntree, 'year') > 200
+                || dateFin.diff(dateEntree, 'year') < 0) {
+                this.isIndemniteValid = false;
+                return;
+            }
+            this.isIndemniteValid = true;
+            var dateTemp = dateFin.clone();
+            this.moisN1 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN2 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN3 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN4 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN5 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN6 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN7 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN8 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN9 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN10 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN11 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            this.moisN12 = dateTemp.add(-1, 'month').locale('fr').format('MMMM YYYY');
+            var anciennete = dateFin.diff(dateEntree, 'year', true);
+            console.log('anciennete:' + anciennete);
+            var salaireMoy3Mois = (+this.salaireN1 + (+this.salaireN2) + (+this.salaireN3)) / 3;
+            var salaireMoy12Mois = (+this.salaireN1 + (+this.salaireN2) + (+this.salaireN3) + (+this.salaireN4) + (+this.salaireN5) + (+this.salaireN6)
+                + (+this.salaireN7) + (+this.salaireN8) + (+this.salaireN9) + (+this.salaireN10) + (+this.salaireN11) + (+this.salaireN12)) / 12;
+            this.salaireMoyen = Math.max(salaireMoy3Mois, salaireMoy12Mois);
+            this.montant15 = this.salaireMoyen * anciennete / 5;
+            this.montant25 = Math.max(0, this.salaireMoyen * (anciennete - 10) * 2 / 15);
+            this.montantIndemnite = this.montant15 + this.montant25;
+        };
+        IndemLicController.$inject = [
+            'moment'
+        ];
         return IndemLicController;
     })();
     CalculetteRH.IndemLicController = IndemLicController;
