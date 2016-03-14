@@ -4,9 +4,9 @@ module CalculetteRH {
 
 	export class IjssSalaireMenController {
 			
-		plafondSalaire: number = 2623.54;
-		plafondIjss: number = 43.13;
-		plafondIjssMaj: number = 57.50;
+		plafondSalaire: number = 2639.92;
+		plafondIjss: number = 43.40;
+		plafondIjssMaj: number = 57.86;
 		
 		dateDebutStr: string;
 		dateFinStr: string;		

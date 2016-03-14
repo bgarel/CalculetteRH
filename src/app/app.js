@@ -154,9 +154,9 @@ var CalculetteRH;
     var IjssSalaireMenController = (function () {
         function IjssSalaireMenController(moment) {
             this.moment = moment;
-            this.plafondSalaire = 2623.54;
-            this.plafondIjss = 43.13;
-            this.plafondIjssMaj = 57.50;
+            this.plafondSalaire = 2639.92;
+            this.plafondIjss = 43.40;
+            this.plafondIjssMaj = 57.86;
             //var dateFin = moment();
             //this.dateFinStr = dateFin.format('DD/MM/YYYY');
             this.isIjssValid = false;
