@@ -62,7 +62,7 @@ export default class Anciennete extends React.Component {
 
    render() {
        return (
-        <article className="container">
+        <article className="container mt-3">
         <h1>Calcul de l'ancienneté</h1>
         <div className="mt-5">
             <form className="form-inline">
