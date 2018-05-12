@@ -52,3 +52,6 @@ bower_components
 
 # dist www folder
 wwwroot
+
+# build folder
+build
