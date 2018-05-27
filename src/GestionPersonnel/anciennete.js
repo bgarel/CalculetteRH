@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 export default class Anciennete extends React.Component {
-   
+
     constructor(props) {
         super(props);
         this.state = {
@@ -11,17 +11,17 @@ export default class Anciennete extends React.Component {
             anciennete: 0,
             ancienneteStr: '',
             isValid: false
-        };            
+        };
       }
 
-    updateAnciennete(newState) {        
+    updateAnciennete(newState) {
         const dateEntree = moment(newState.dateEntree, 'DD/MM/YYYY', true);
         const dateSortie = moment(newState.dateSortie, 'DD/MM/YYYY', true).add(1, 'day');
-        
+
         if (!dateEntree.isValid() || !dateSortie.isValid()
             || dateSortie.diff(dateEntree, 'year') > 200
             || dateSortie.diff(dateEntree, 'year') < 0) {
-            newState.isValid = false;                  
+            newState.isValid = false;
             this.setState(newState);
             return;
         }
@@ -29,11 +29,11 @@ export default class Anciennete extends React.Component {
         const nbreAnnees = dateSortie.diff(dateEntree, 'year');
         const nbreMois = dateSortie.diff(dateEntree, 'month') - nbreAnnees * 12;
         let  nbreJours = 0;
-        
+
         if (dateEntree.date() <= dateSortie.date()) {
             nbreJours = dateSortie.date() - dateEntree.date();
         }
-        else {				
+        else {
             var dateDebutInAnneeFin = moment({
                 year: dateSortie.year(),
                 month: dateSortie.month(),
@@ -47,16 +47,16 @@ export default class Anciennete extends React.Component {
             chaineAnciennete += ", " + nbreMois + " mois";
         if (nbreJours > 0)
             chaineAnciennete += ", et " + nbreJours + " jours";
-        
-        newState.anciennete = dateSortie.diff(dateEntree, 'year', true);      
-        newState.ancienneteStr = chaineAnciennete;  
-        newState.isValid = true;      
+
+        newState.anciennete = dateSortie.diff(dateEntree, 'year', true);
+        newState.ancienneteStr = chaineAnciennete;
+        newState.isValid = true;
         this.setState(newState);
     }
 
     onDateChanged(event, dateProperty) {
         let newState = {...this.state};
-        newState[dateProperty] = event.target.value;        
+        newState[dateProperty] = event.target.value;
         this.updateAnciennete(newState);
     }
 
