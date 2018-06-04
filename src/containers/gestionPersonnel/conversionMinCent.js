@@ -2,11 +2,6 @@ import React from 'react';
 
 export default class ConversionMinCent extends React.Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
         return (
             <article className="container">
@@ -14,14 +9,14 @@ export default class ConversionMinCent extends React.Component {
             <div>
                 <form className="form-inline">
                     <div className="form-group">
-                        <input type="text" className="form-control form-control-small mr-2" maxlength="2" placeholder="H" id="uiHeures"/>
+                        <input type="text" className="form-control form-control-small mr-2" maxLength="2" placeholder="H" id="uiHeures"/>
                     </div>
                     <div className="form-group">
-                        <label for="uiMinutes">:</label>
-                        <input type="text" className="form-control form-control-small ml-2 mr-2" maxlength="2" placeholder="M" id="uiMinutes" />
+                        <label htmlFor="uiMinutes">:</label>
+                        <input type="text" className="form-control form-control-small ml-2 mr-2" maxLength="2" placeholder="M" id="uiMinutes" />
                     </div>
                     <div className="form-group">
-                        <label for="uiHeureMinutes">=</label>
+                        <label htmlFor="uiHeureMinutes">=</label>
                         <input type="text" className="form-control ml-2" id="uiHeureMinutes" placeholder="heures décimales" />
                     </div>
                 </form>
