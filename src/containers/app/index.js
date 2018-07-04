@@ -1,13 +1,13 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Home from '../home';
 import Anciennete from '../gestionPersonnel/anciennete';
 import ConversionMinCent from '../gestionPersonnel/conversionMinCent';
-import AppNavBar from './app-navbar'
+import AppNavBar from './app-navbar';
 
 const App = () => (
   <div>
-      <AppNavBar/>
+    <AppNavBar />
     <main>
       <Route exact path="/" component={Home} />
       <Route exact path="/gestionPersonnel/anciennete" component={Anciennete} />

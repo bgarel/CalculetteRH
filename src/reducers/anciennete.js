@@ -15,34 +15,34 @@ const calculerAnciennete = (state, values) => {
   const dateEntree = moment(values.dateEntree, 'DD/MM/YYYY', true);
   const dateSortie = moment(values.dateSortie, 'DD/MM/YYYY', true).add(1, 'day');
 
-  if (!dateEntree.isValid() || !dateSortie.isValid()
-      || dateSortie.diff(dateEntree, 'year') > 200
-      || dateSortie.diff(dateEntree, 'year') < 0) {
-      newState.isValid = false;
-      return newState;
+  if (
+    !dateEntree.isValid() ||
+    !dateSortie.isValid() ||
+    dateSortie.diff(dateEntree, 'year') > 200 ||
+    dateSortie.diff(dateEntree, 'year') < 0
+  ) {
+    newState.isValid = false;
+    return newState;
   }
 
   const nbreAnnees = dateSortie.diff(dateEntree, 'year');
   const nbreMois = dateSortie.diff(dateEntree, 'month') - nbreAnnees * 12;
-  let  nbreJours = 0;
+  let nbreJours = 0;
 
   if (dateEntree.date() <= dateSortie.date()) {
-      nbreJours = dateSortie.date() - dateEntree.date();
-  }
-  else {
-      var dateDebutInAnneeFin = moment({
-          year: dateSortie.year(),
-          month: dateSortie.month(),
-          day: dateEntree.date()
-      }).subtract(1, 'month');
-      nbreJours = dateSortie.diff(dateDebutInAnneeFin, 'days');
+    nbreJours = dateSortie.date() - dateEntree.date();
+  } else {
+    var dateDebutInAnneeFin = moment({
+      year: dateSortie.year(),
+      month: dateSortie.month(),
+      day: dateEntree.date()
+    }).subtract(1, 'month');
+    nbreJours = dateSortie.diff(dateDebutInAnneeFin, 'days');
   }
 
-  let chaineAnciennete = nbreAnnees + " an(s)";
-  if (nbreMois > 0)
-      chaineAnciennete += ", " + nbreMois + " mois";
-  if (nbreJours > 0)
-      chaineAnciennete += ", et " + nbreJours + " jours";
+  let chaineAnciennete = nbreAnnees + ' an(s)';
+  if (nbreMois > 0) chaineAnciennete += ', ' + nbreMois + ' mois';
+  if (nbreJours > 0) chaineAnciennete += ', et ' + nbreJours + ' jours';
 
   newState.anciennete = dateSortie.diff(dateEntree, 'year', true);
   newState.ancienneteStr = chaineAnciennete;
@@ -50,7 +50,7 @@ const calculerAnciennete = (state, values) => {
 
   console.log(newState);
   return newState;
-}
+};
 
 export default (state = initialState, action) => {
   console.log(action.type);
@@ -69,4 +69,3 @@ export const updateAnciennete = (values, dispatch) => {
     payload: values
   });
 };
-

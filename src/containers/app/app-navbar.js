@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import {Link} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -10,7 +10,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from "reactstrap";
+} from 'reactstrap';
 
 export default class AppNavbar extends React.Component {
   constructor(props) {
@@ -30,7 +30,9 @@ export default class AppNavbar extends React.Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand tag={Link} to="/">Calculette RH</NavbarBrand>
+          <NavbarBrand tag={Link} to="/">
+            Calculette RH
+          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="mr-auto" navbar>
@@ -42,10 +44,7 @@ export default class AppNavbar extends React.Component {
                   <DropdownItem tag={Link} to="/gestionPersonnel/anciennete">
                     Ancienneté
                   </DropdownItem>
-                  <DropdownItem
-                    tag={Link}
-                    to="/gestionPersonnel/conversionMinCent"
-                  >
+                  <DropdownItem tag={Link} to="/gestionPersonnel/conversionMinCent">
                     Conversion minutes / centièmes
                   </DropdownItem>
                 </DropdownMenu>

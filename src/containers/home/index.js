@@ -1,13 +1,8 @@
 import React from 'react';
-import { push } from 'react-router-redux';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import {
-  increment,
-  incrementAsync,
-  decrement,
-  decrementAsync
-} from '../../reducers/counter';
+import {push} from 'react-router-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {increment, incrementAsync, decrement, decrementAsync} from '../../reducers/counter';
 
 const Home = props => (
   <div>
@@ -33,9 +28,7 @@ const Home = props => (
     </p>
 
     <p>
-      <button onClick={() => props.changePage()}>
-        Go to about page via redux
-      </button>
+      <button onClick={() => props.changePage()}>Go to about page via redux</button>
     </p>
   </div>
 );
@@ -58,4 +51,7 @@ const mapDispatchToProps = dispatch =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
