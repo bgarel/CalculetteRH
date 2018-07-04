@@ -5,6 +5,7 @@
   "devDependencies": {
     "husky": "^1.0.0-rc.10",
     "prettier": "^1.13.7",
+    "pretty-quick": "^1.6.0",
     "react-scripts": "^1.1.4"
   },
   "dependencies": {
@@ -32,7 +33,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier"
+      "pre-commit": "pretty-quick --staged"
     }
   }
 }
