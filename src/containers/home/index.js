@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import React from 'react';
 import {push} from 'react-router-redux';
 import {bindActionCreators} from 'redux';

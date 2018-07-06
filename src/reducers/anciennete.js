@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import moment from 'moment';
 
 export const UPDATE_ANCIENNETE = 'anciennete/UPDATE';

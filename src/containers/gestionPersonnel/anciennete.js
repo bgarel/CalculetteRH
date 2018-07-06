@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import React from 'react';
 import {connect} from 'react-redux';
 import AncienneteForm from './ancienneteForm';

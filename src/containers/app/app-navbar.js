@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {

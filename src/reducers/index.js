@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import counter from './counter';

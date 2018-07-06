@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import React from 'react';
 import {render} from 'react-dom';
 import {Provider} from 'react-redux';

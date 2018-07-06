@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import React from 'react';
 
 export default class ConversionMinCent extends React.Component {

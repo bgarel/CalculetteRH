@@ -1,3 +1,5 @@
+// Copyright 2015-2018 calculette-rh.com
+
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {updateAnciennete} from '../../reducers/anciennete';
